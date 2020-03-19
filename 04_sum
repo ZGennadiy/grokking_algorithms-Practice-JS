@@ -1,0 +1,25 @@
+//Loop
+const sumLoop = (arr) => {
+  let result = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    result += arr[i];
+  }
+  return result;
+};
+
+console.log(sumLoop([17, 2, 30, 4])); // 53
+
+//Reduce
+const sumReduce = (arr) => arr.reduce((curr, prev) => curr + prev);
+
+console.log(sumReduce([17, 2, 30, 4])); // 53
+
+//Recursion
+const sumRecursion = (arr) => {
+  if (arr.length === 0) {
+    return 0;
+  }
+  return arr[0] + sumRecursion(arr.slice(1));
+};
+
+console.log(sumRecursion([17, 2, 30, 4])); // 53
