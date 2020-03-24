@@ -1,0 +1,11 @@
+const getGCD = (a, b) => {
+    if (!b) {
+        return a;
+    }
+    return getGCD(b, a % b);
+};
+
+const a = 1980;
+const b = 630;
+
+console.log(getGCD(a, b)); // 90
