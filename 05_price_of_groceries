@@ -1,0 +1,9 @@
+const book = {};
+// an apple costs 60 rub
+book.apple = 60;
+// milk costs 49 rub
+book.milk = 49;
+// avocado costs 79 rub
+book.avocado = 79;
+
+console.log(book); // { apple: 60, milk: 49, avocado: 79 }
