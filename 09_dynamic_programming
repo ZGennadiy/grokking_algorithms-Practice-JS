@@ -1,0 +1,55 @@
+// longest_common_subsequence
+const createMatrix = (rows, cols) => {
+  const matrix = new Array(rows);
+
+  for (let i = 0; i < matrix.length; i += 1) {
+    matrix[i] = new Array(cols).fill(0);
+  }
+
+  return matrix;
+}
+
+const substring = (a, b) => {
+  const cell = createMatrix(a.length + 1, b.length + 1);
+  let lcs = 0;
+  let lastSubIndex = 0;
+
+  for (let i = 1; i <= a.length; i += 1) {
+    for (let j = 1; j <= b.length; j += 1) {
+      if (a[i - 1] === b[j - 1]) {
+        cell[i][j] = cell[i - 1][j - 1] + 1;
+
+        if (cell[i][j] > lcs) {
+          lcs = cell[i][j];
+          lastSubIndex = i;
+        }
+      } else {
+        cell[i][j] = 0;
+      }
+    }
+  }
+
+  return a.slice(lastSubIndex - lcs, lastSubIndex);
+}
+
+console.log(substring("vista", "hish")); // "is"
+console.log(substring("fish", "hish")); // "ish"
+
+const subsequence = (a, b) => {
+  const cell = createMatrix(a.length + 1, b.length + 1);
+
+  for (let i = 1; i <= a.length; i += 1) {
+    for (let j = 1; j <= b.length; j += 1) {
+      if (a[i] === b[j]) {
+        cell[i][j] = cell[i - 1][j - 1] + 1;
+      } else {
+        cell[i][j] = Math.max(cell[i - 1][j], cell[i][j - 1]);
+      }
+    }
+  }
+
+  return cell[a.length][b.length];
+}
+
+console.log(subsequence("fish", "fosh")); // 3
+console.log(subsequence("fort", "fosh")); // 2
